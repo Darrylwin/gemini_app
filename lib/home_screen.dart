@@ -81,26 +81,26 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // InputDecoration textFieldDecoration() {
-  //   return InputDecoration(
-  //     contentPadding: const EdgeInsets.all(15),
-  //     hintText: 'Enter a prompt',
-  //     border: OutlineInputBorder(
-  //       borderRadius: const BorderRadius.all(
-  //         Radius.circular(14),
-  //       ),
-  //       borderSide: BorderSide(
-  //         color: Theme.of(context).colorScheme.secondary,
-  //       ),
-  //     ),
-  //     focusedBorder: OutlineInputBorder(
-  //       borderRadius: const BorderRadius.all(
-  //         Radius.circular(14),
-  //       ),
-  //       borderSide: BorderSide(
-  //         color: Theme.of(context).colorScheme.secondary,
-  //       ),
-  //     ),
-  //   );
-  // }
+  InputDecoration textFieldDecoration() {
+    return InputDecoration(
+      contentPadding: const EdgeInsets.all(15),
+      hintText: 'Enter a prompt',
+      border: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(14),
+        ),
+        borderSide: BorderSide(
+          color: Theme.of(context).colorScheme.secondary,
+        ),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(14),
+        ),
+        borderSide: BorderSide(
+          color: Theme.of(context).colorScheme.secondary,
+        ),
+      ),
+    );
+  }
 }
