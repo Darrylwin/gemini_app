@@ -132,9 +132,29 @@ class _HomeScreenState extends State<HomeScreen> {
     } finally {
       _textController.clear();
       setState(() {
-        loading = false;
+        _loading = false;
       });
       _textFieldFocus.requestFocus();
     }
+  }
+
+  void _showError(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Something went wrong'),
+          content: SingleChildScrollView(
+            child: SelectableText(message),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {},
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
