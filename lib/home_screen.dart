@@ -14,8 +14,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late final GenerativeModel _model;
   late final ChatSession _chatSession;
-  // final FocusNode _textFieldFocusNode = FocusNode();
-  // final TextEditingController _textController = TextEditingController();
+  final FocusNode _textFieldFocusNode = FocusNode();
+  final TextEditingController _textController = TextEditingController();
 
   @override
   void initState() {
