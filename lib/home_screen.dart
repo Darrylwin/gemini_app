@@ -14,8 +14,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late final GenerativeModel _model;
   late final ChatSession _chatSession;
-  final FocusNode _textFieldFocusNode = FocusNode();
+  final FocusNode _textFieldFocus = FocusNode();
   final TextEditingController _textController = TextEditingController();
+  bool _loading = false;
 
   @override
   void initState() {
@@ -65,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: TextField(
                       autofocus: true,
-                      focusNode: _textFieldFocusNode,
+                      focusNode: _textFieldFocus,
                       decoration: textFieldDecoration(),
                       controller: _textController,
                       onSubmitted: _sendChatMessage,
@@ -102,5 +103,38 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _sendChatMessage(String message) async {
+    setState(() {
+      _loading = true;
+    });
+
+    try {
+      final response = await _chatSession.sendMessage(
+        Content.text(message),
+      );
+      final text = response.text;
+      if (text == null) {
+        _showError("No Response From API");
+        return;
+      } else {
+        setState(() {
+          _loading = false;
+          _scrollDown();
+        });
+      }
+    } catch (e) {
+      _showError(e.toString());
+      setState(() {
+        _loading = false;
+      });
+    } finally {
+      _textController.clear();
+      setState(() {
+        loading = false;
+      });
+      _textFieldFocus.requestFocus();
+    }
   }
 }
