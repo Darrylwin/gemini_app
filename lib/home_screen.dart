@@ -16,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late final ChatSession _chatSession;
   final FocusNode _textFieldFocus = FocusNode();
   final TextEditingController _textController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
   bool _loading = false;
 
   @override
@@ -155,6 +156,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         );
       },
+    );
+  }
+
+  void _scrollDown() {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(microseconds: 750),
+        curve: Curves.easeOutCirc,
+      ),
     );
   }
 }
