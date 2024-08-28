@@ -43,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Expanded(
               child: ListView.builder(
+                controller: _scrollController,
                 itemBuilder: (context, index) {
                   final Content content = _chatSession.history.toList()[index];
                   final text = content.parts
@@ -55,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     isFromUser: content.role == 'user',
                   );
                 },
+                itemCount: _chatSession.history.length,
               ),
             ),
             Padding(
